@@ -197,3 +197,17 @@ hr {
 	outline-width: .125rem;
 	outline-color: currentColor;
 }
+
+.tab__help {
+	margin-block-start: 2rem;
+	font-size: .875rem;
+	opacity: .75;
+}
+.tab__key {
+	border-radius: .5em;
+	margin-inline: .125em;
+	padding: .5em;
+
+	color: var(--body-color);
+	background-color: var(--body-background-color);
+}

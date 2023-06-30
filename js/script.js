@@ -7,6 +7,10 @@ const tabsContent = document.getElementById('tabsContent');
 const tabLinks = tabsList.querySelectorAll('.tab__link');
 const tabPanels = tabsContent.querySelectorAll('.tab__panel');
 const tabPanelsLinkBack = tabsContent.querySelectorAll('.tab__link-back');
+const tabHelp = document.getElementById('tabHelp');
+
+// * показываем помощь
+tabHelp.removeAttribute('hidden');
 
 // * добавляем роль - список вкладок
 tabsList.setAttribute('role', 'tablist');
