@@ -55,11 +55,11 @@ tabPanels.forEach(panel => {
 // * регистрируем событие - клик
 document.addEventListener('click', e => {
 
-	console.log('Переключение вкладки осуществлено с помощью клика.');
-
 	// * если кликнули по ссылкам вкладок
 	if (e.target.classList.contains('tab__link'))
 	{
+		console.log('Переключение вкладки осуществлено с помощью клика.');
+
 		// * блокируем стандартное поведение ссылки
 		e.preventDefault();
 		// * вызываем функцию переключения вкладки
@@ -122,13 +122,11 @@ function switchTab(newTab)
 	// * ставим на ссылке-вкладке фокус
 	newTab.focus();
 
-	console.log('%cПереключена вкладка – ' + newTab.textContent, 'color:hsl(120 100% 70%)')
+	console.log('%cНовая вкладка – ' + newTab.textContent, 'color:hsl(120 100% 70%)')
 }
 // * функция переключения вкладки при нажатии кнопки Влево
 function moveLeft()
 {
-	console.log('Переключение вкладки осуществлено с помощью нажатия клавиши.');
-
 	// * получаем активную вкладку
 	const currentTab = document.activeElement;
 
@@ -144,8 +142,6 @@ function moveLeft()
 // * функция переключения вкладки при нажатии кнопки Вправо
 function moveRight()
 {
-	console.log('Переключение вкладки осуществлено с помощью нажатия клавиши.');
-
 	// * получаем активную вкладку
 	const currentTab = document.activeElement;
 
