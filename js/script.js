@@ -52,10 +52,10 @@ tabPanels.forEach(panel => {
 	panel.setAttribute('role', 'tabpanel');
 });
 
-// * регистрируем события
+// * регистрируем событие - клик
 document.addEventListener('click', e => {
 
-	// * если кликнули по вкладке
+	// * если кликнули по ссылкам вкладок
 	if (e.target.classList.contains('tab__link'))
 	{
 		// * блокируем стандартное поведение ссылки
@@ -65,16 +65,88 @@ document.addEventListener('click', e => {
 	}
 })
 
-// tabsContainer.addEventListener("click", (e) => {
-// 	const clickedTab = e.target.closest("a");
-// 	if (!clickedTab) return;
-// 	e.preventDefault();
+// * регистрируем событие - нажатие кнопи
+tabs.addEventListener('keydown', e => {
 
-// 	switchTab(clickedTab);
-// });
+	// * проверяем код нажатой кнопки
+	switch (e.key) {
+		// * нажата стрелка Влево
+		case 'ArrowLeft':
+			moveLeft();
+			break;
+		// * нажата стрелка Вправо
+		case 'ArrowRight':
+			moveRight();
+			break;
+		// * нажата стрелка В начало
+		case 'Home':
+			e.preventDefault();
+			switchTab(tabLinks[0]);
+			break;
+		// * нажата стрелка В конец
+		case 'End':
+			e.preventDefault();
+			switchTab(tabLinks[tabLinks.length - 1]);
+			break;
+	}
+});
 
 // * функция переключения вкладок
-function switchTab(tab)
+function switchTab(newTab)
 {
-	console.log(tab.textContent);
+	const activePanelId = newTab.getAttribute('href');
+	const activePanel = tabs.querySelector(activePanelId);
+
+	// * прячем другие ссылки-вкладки
+	tabLinks.forEach(link => {
+		link.classList.remove('tab__link--active');
+		link.setAttribute('aria-selected', false);
+		link.setAttribute('tabindex', '-1');
+	});
+
+	// * прячем всё содержимое вкладок
+	tabPanels.forEach(panel => {
+		panel.setAttribute('hidden', true);
+	});
+
+	// * показываем содержимое активной вкладки
+	activePanel.removeAttribute('hidden', false);
+
+	// * делаем ссылку-вкладку активной
+	newTab.classList.add('tab__link--active');
+	newTab.setAttribute('aria-selected', true);
+	newTab.setAttribute('tabindex', '0');
+
+	// * ставим на ссылке-вкладке фокус
+	newTab.focus();
+}
+// * функция переключения вкладки при нажатии кнопки Влево
+function moveLeft()
+{
+	// * получаем активную вкладку
+	const currentTab = document.activeElement;
+
+	// * переключаем вкладку
+	switchTab(
+		// * если предыдущей вкладки нет - переходим на последнюю
+		(!currentTab.parentElement.previousElementSibling) ?
+		tabLinks[tabLinks.length - 1] :
+		// * если предыдущая вкладка есть - переходим на неё
+		currentTab.parentElement.previousElementSibling.querySelector('.tab__link')
+	);
+}
+// * функция переключения вкладки при нажатии кнопки Вправо
+function moveRight()
+{
+	// * получаем активную вкладку
+	const currentTab = document.activeElement;
+
+	// * переключаем вкладку
+	switchTab(
+		// * если предыдущей вкладки нет - переходим на последнюю
+		(!currentTab.parentElement.nextElementSibling) ?
+		tabLinks[0] :
+		// * если предыдущая вкладка есть - переходим на неё
+		currentTab.parentElement.nextElementSibling.querySelector('.tab__link')
+	);
 }
