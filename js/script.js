@@ -58,8 +58,6 @@ document.addEventListener('click', e => {
 	// * если кликнули по ссылкам вкладок
 	if (e.target.classList.contains('tab__link'))
 	{
-		console.log('Переключение вкладки осуществлено с помощью клика.');
-
 		// * блокируем стандартное поведение ссылки
 		e.preventDefault();
 		// * вызываем функцию переключения вкладки
