@@ -185,3 +185,15 @@ hr {
 .tab__link--active {
 	color: var(--link-color-active);
 }
+
+.tab__panel {
+	outline: 0em dashed transparent;
+	outline-offset: .875rem;
+
+	transition: .2s ease-in-out;
+	transition-property: color, outline-color;
+}
+.tab__panel:focus-visible {
+	outline-width: .125rem;
+	outline-color: currentColor;
+}
