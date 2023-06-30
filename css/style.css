@@ -8,6 +8,13 @@
 	--link-color: hsl(200 100% 50%);
 	--link-color-hover: hsl(200 100% 40%);
 	--link-color-active: hsl(300 100% 40%);
+
+	--tabs-background-color: hsl(0 0% 90%);
+
+	--warning-color: hsl(0 20% 20%);
+	--warning-background-color: hsl(0 50% 90%);
+	--success-color: hsl(120 20% 20%);
+	--success-background-color: hsl(120 50% 90%);
 }
 @media (prefers-color-scheme: dark) {
 	:root {
@@ -20,6 +27,13 @@
 		--link-color: hsl(200 100% 50%);
 		--link-color-hover: hsl(200 100% 70%);
 		--link-color-active: hsl(300 100% 70%);
+
+		--tabs-background-color: hsl(0 0% 12%);
+
+		--warning-color: hsl(0 50% 80%);
+		--warning-background-color: hsl(0 20% 10%);
+		--success-color: hsl(120 50% 80%);
+		--success-background-color: hsl(120 20% 10%);
 	}
 }
 
@@ -112,6 +126,20 @@ a:active {
 	color: var(--link-color-active);
 }
 
+.notify {
+	margin-block: 1em;
+	border-radius: 1em;
+	padding: 1em 1.5em;
+}
+.notify--warning {
+	color: var(--warning-color);
+	background-color: var(--warning-background-color);
+}
+.notify--success {
+	color: var(--success-color);
+	background-color: var(--success-background-color);
+}
+
 .container {
 	max-width: 75rem;
 	padding-inline: 2rem;
@@ -134,10 +162,17 @@ hr {
 	background-color: currentColor;
 }
 
+.tabs {
+	padding: 2rem;
+	background-color: var(--tabs-background-color);
+	border-radius: 1rem;
+}
+
 .tab {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1rem;
+	margin-block-end: 2rem;
 }
 
 .tab__item {}
